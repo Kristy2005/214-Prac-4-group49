@@ -1,5 +1,4 @@
 # 214-Prac-4-group49
-# 214-Prac-4-group49
 # TaskForge
 
 TaskForge is a hierarchical work-processing system developed for COS 214 Practical 4.
