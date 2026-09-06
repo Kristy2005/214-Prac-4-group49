@@ -16,15 +16,23 @@ UnresolvedIterator::~UnresolvedIterator() {
 }
 
 bool UnresolvedIterator::hasNext() {
-    return (size_t)currentIndex < snapshot.size();
+    // Advance currentIndex past any items that are no longer unresolved
+    while ((size_t)currentIndex < snapshot.size()) {
+        if (snapshot[currentIndex]->isUnresolved()) {
+            return true;
+        }
+        currentIndex++;
+    }
+    return false;
 }
 
 ComplaintComponent* UnresolvedIterator::next() {
-    if(hasNext()) {
-        return snapshot[currentIndex++];
+    if (!hasNext()) {
+        return nullptr;
     }
-    return nullptr;
+    return snapshot[currentIndex++];
 }
+
 
 void UnresolvedIterator::reset() {
     currentIndex = 0;
