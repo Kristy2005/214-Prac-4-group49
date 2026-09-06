@@ -30,7 +30,13 @@ void AllIterator::reset() {
 }
 
 void AllIterator::sortSnapshot() {
-    sort(snapshot.begin(), snapshot.end(), [](ComplaintComponent* a, ComplaintComponent* b) {
+    std::sort(snapshot.begin(), snapshot.end(), [](ComplaintComponent* a, ComplaintComponent* b) {
+        // 1. Primary sort: Urgent complaints (true / 1) come before non-urgent (false / 0)
+        if (a->isUrgent() != b->isUrgent()) {
+            return a->isUrgent() > b->isUrgent();
+        }
+        
+        // 2. Secondary sort: Standard chronological order by logged time
         return a->getLoggedAt() < b->getLoggedAt();
     });
 }

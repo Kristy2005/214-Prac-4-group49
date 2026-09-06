@@ -6,6 +6,7 @@ NotificationDecorator::NotificationDecorator(ComplaintComponent* component)
     : ComplaintDecorator(component){}
 
 void NotificationDecorator::display() {
+    cout << "[NOTIFICATION SENT] ";
     ComplaintDecorator::display();
 }
 
