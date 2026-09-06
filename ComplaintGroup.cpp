@@ -1,88 +1,103 @@
 #include "ComplaintGroup.h"
+#include "AllIterator.h"
+#include "UnresolvedIterator.h"
 #include <iostream>
+#include <algorithm>
+using namespace std;
 
-ComplaintGroup::ComplaintGroup(std::string name)
+ComplaintGroup::ComplaintGroup(string name)
     : name(name){}
 
 ComplaintGroup::~ComplaintGroup(){
-
     for(int i = 0; i < static_cast<int>(children.size()); i++){
-		
         if (children[i] != nullptr){
             delete children[i];
             children[i] = nullptr;
         }
     }
-
     children.clear();
 }
 
 void ComplaintGroup::add(ComplaintComponent* component) {
-	// TODO - implement ComplaintGroup::add
-
+    if (component != nullptr) {
+        children.push_back(component);
+    }
 }
 
 ComplaintComponent* ComplaintGroup::remove(ComplaintComponent* component) {
-	// TODO - implement ComplaintGroup::remove
-	return nullptr;
+    auto it = find(children.begin(), children.end(), component);
+    if (it != children.end()) {
+        ComplaintComponent* removed = *it;
+        children.erase(it);
+        return removed;
+    }
+    return nullptr;
 }
 
 void ComplaintGroup::display() {
-	// TODO - implement ComplaintGroup::display
-	
+    cout << "Group: " << name << endl;
+    for(auto child : children) {
+        child->display();
+    }
 }
 
 void ComplaintGroup::assign() {
-	// TODO - implement ComplaintGroup::assign
-	
+    for(auto child : children) {
+        child->assign();
+    }
 }
 
 void ComplaintGroup::startProgress() {
-	// TODO - implement ComplaintGroup::startProgress
-	
+    for(auto child : children) {
+        child->startProgress();
+    }
 }
 
 void ComplaintGroup::resolve() {
-	// TODO - implement ComplaintGroup::resolve
-	
+    for(auto child : children) {
+        child->resolve();
+    }
 }
 
 void ComplaintGroup::close() {
-	// TODO - implement ComplaintGroup::close
-	
+    for(auto child : children) {
+        child->close();
+    }
 }
 
 bool ComplaintGroup::isUrgent() {
-	// TODO - implement ComplaintGroup::isUrgent
-	return false;
+    for(auto child : children) {
+        if(child->isUrgent()) return true;
+    }
+    return false;
 }
 
 bool ComplaintGroup::isUnresolved() {
-	// TODO - implement ComplaintGroup::isUnresolved
-	return false;
+    for(auto child : children) {
+        if(child->isUnresolved()) return true;
+    }
+    return false;
 }
 
 time_t ComplaintGroup::getLoggedAt() {
-	// TODO - implement ComplaintGroup::getLoggedAt
-	return 0;
+    if (children.empty()) return 0;
+    return children[0]->getLoggedAt();
 }
 
-std::string ComplaintGroup::getStateName() {
-	// TODO - implement ComplaintGroup::getStateName
-	return "";
+string ComplaintGroup::getStateName() {
+    return "";
 }
 
-void ComplaintGroup::collectComplaints(std::vector<ComplaintComponent*>& list) {
-	// TODO - implement ComplaintGroup::collectComplaints
-
+void ComplaintGroup::collectComplaints(vector<ComplaintComponent*>& list) {
+    for(auto child : children) {
+        child->collectComplaints(list);
+    }
 }
 
 ComplaintIterator* ComplaintGroup::createAllIterator() {
-	// TODO - implement ComplaintGroup::createAllIterator
-	return nullptr;
+    return new AllIterator(this);
 }
 
 ComplaintIterator* ComplaintGroup::createUnresolvedIterator() {
-	// TODO - implement ComplaintGroup::createUnresolvedIterator
-	return nullptr;
+    return new UnresolvedIterator(this);
 }

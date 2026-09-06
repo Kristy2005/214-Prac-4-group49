@@ -4,15 +4,17 @@
 #include <string>
 #include "ComplaintComponent.h"
 #include "ComplaintIterator.h"
+using namespace std;
 
 class ComplaintGroup : public ComplaintComponent {
 
+protected:
+	string name;
 private:
-	std::string name;
-	std::vector<ComplaintComponent*> children;
+	vector<ComplaintComponent*> children;
 
 public:
-	ComplaintGroup(std::string name);
+	ComplaintGroup(string name);
 	~ComplaintGroup();
 	void add(ComplaintComponent* component);
 	ComplaintComponent* remove(ComplaintComponent* component);
@@ -24,8 +26,8 @@ public:
 	bool isUrgent();
 	bool isUnresolved();
 	time_t getLoggedAt();
-	std::string getStateName();
-	void collectComplaints(std::vector<ComplaintComponent*>& list);
+	string getStateName();
+	void collectComplaints(vector<ComplaintComponent*>& list);
 	ComplaintIterator* createAllIterator();
 	ComplaintIterator* createUnresolvedIterator();
 };

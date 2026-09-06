@@ -3,13 +3,14 @@
 #include <vector>
 #include <string>
 #include "ComplaintGroup.h"
+using namespace std;
 
 
 class ComplaintCategory : public ComplaintGroup {
 
 
 public:
-	ComplaintCategory(std::string name);
+	ComplaintCategory(string name);
 
 	void display();
 };

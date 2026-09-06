@@ -1,31 +1,25 @@
 #include "ComplaintState.h"
+using namespace std;
 
 ComplaintState::~ComplaintState() {
-	// TODO - implement ComplaintState::~ComplaintState
-	
 }
 
 ComplaintState* ComplaintState::assign() {
-	// TODO - implement ComplaintState::assign
-	return nullptr;
+	return this;
 }
 
 ComplaintState* ComplaintState::startProgress() {
-	// TODO - implement ComplaintState::startProgress
-	return nullptr;
+	return this;
 }
 
 ComplaintState* ComplaintState::resolve() {
-	// TODO - implement ComplaintState::resolve
-	return nullptr;
+	return this;
 }
 
 ComplaintState* ComplaintState::close() {
-	// TODO - implement ComplaintState::close
-	return nullptr;
+	return this;
 }
 
 bool ComplaintState::isUnresolved() {
-	// TODO - implement ComplaintState::isUnresolved
-	return false;
+	return true;
 }

@@ -3,13 +3,14 @@
 #include "ComplaintState.h"
 #include <vector>
 #include <string>
+using namespace std;
 
 class AssignedState : public ComplaintState{
 
 
 public:
 	ComplaintState* startProgress();
-	std::string getName();
+	string getName();
 	bool isUnresolved();
 };
 

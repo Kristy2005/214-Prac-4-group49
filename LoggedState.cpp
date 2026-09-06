@@ -1,17 +1,16 @@
 #include "LoggedState.h"
+#include "AssignedState.h"
 #include <iostream>
+using namespace std;
 
 ComplaintState* LoggedState::assign() {
-	// TODO - implement LoggedState::assign
-	return nullptr;
+	return new AssignedState();
 }
 
-std::string LoggedState::getName() {
-	// TODO - implement LoggedState::getName
-	return "";
+string LoggedState::getName() {
+	return "Logged";
 }
 
 bool LoggedState::isUnresolved() {
-	// TODO - implement LoggedState::isUnresolved
-	return false;
+	return true;
 }

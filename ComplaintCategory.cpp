@@ -1,9 +1,10 @@
 #include "ComplaintCategory.h"
+#include <iostream>
+using namespace std;
 
-ComplaintCategory::ComplaintCategory(std::string name)
+ComplaintCategory::ComplaintCategory(string name)
     : ComplaintGroup(name){}
 
 void ComplaintCategory::display() {
-	// TODO - implement ComplaintCategory::display
-
+    ComplaintGroup::display();
 }

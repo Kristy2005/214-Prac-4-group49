@@ -2,11 +2,12 @@
 #define CLOSEDSTATE_H
 #include "ComplaintState.h"
 #include <string>
+using namespace std;
 
 class ClosedState :public ComplaintState {
 
 public:
-	std::string getName();
+	string getName();
 	bool isUnresolved();
 };
 

@@ -1,10 +1,10 @@
 #include "FloorDepartment.h"
 #include <iostream>
+using namespace std;
 
-FloorDepartment::FloorDepartment(std::string name)
+FloorDepartment::FloorDepartment(string name)
     : ComplaintGroup(name){}
 
 void FloorDepartment::display() {
-	// TODO - implement FloorDepartment::display
-
+    ComplaintGroup::display();
 }

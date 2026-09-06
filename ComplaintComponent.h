@@ -2,6 +2,7 @@
 #define COMPLAINTCOMPONENT_H
 #include <vector>
 #include <string>
+using namespace std;
 
 class ComplaintComponent {
 
@@ -16,8 +17,8 @@ public:
 	virtual bool isUrgent();
 	virtual bool isUnresolved();
 	virtual time_t getLoggedAt();
-	virtual std::string getStateName();
-	virtual void collectComplaints(std::vector<ComplaintComponent*>& list) = 0;
+	virtual string getStateName();
+	virtual void collectComplaints(vector<ComplaintComponent*>& list) = 0;
 };
 
 #endif

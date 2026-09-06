@@ -1,16 +1,16 @@
 #include "InProgressState.h"
+#include "ResolvedState.h"
+#include <iostream>
+using namespace std;
 
 ComplaintState* InProgressState::resolve() {
-	// TODO - implement InProgressState::resolve
-	return nullptr;
+	return new ResolvedState();
 }
 
-std::string InProgressState::getName() {
-	// TODO - implement InProgressState::getName
-	return "";
+string InProgressState::getName() {
+	return "In Progress";
 }
 
 bool InProgressState::isUnresolved() {
-	// TODO - implement InProgressState::isUnresolved
-	return false;
+	return true;
 }

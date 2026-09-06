@@ -2,13 +2,14 @@
 #define INPROGRESSSTATE_H
 #include <string>
 #include "ComplaintState.h"
+using namespace std;
 
 class InProgressState : public ComplaintState {
 
 
 public:
 	ComplaintState* resolve();
-	std::string getName();
+	string getName();
 	bool isUnresolved();
 };
 

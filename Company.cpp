@@ -1,10 +1,10 @@
 #include "Company.h"
 #include <iostream>
+using namespace std;
 
-Company::Company(std::string name)
+Company::Company(string name)
     : ComplaintGroup(name){}
 
 void Company::display() {
-	// TODO - implement Company::display
-
+    ComplaintGroup::display();
 }

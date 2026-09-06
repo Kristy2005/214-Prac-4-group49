@@ -2,13 +2,14 @@
 #define RESOLVEDSTATE_H
 #include <string>
 #include "ComplaintState.h"
+using namespace std;
 
-class ResolvedState : ComplaintState {
+class ResolvedState : public ComplaintState {
 
 
 public:
 	ComplaintState* close();
-	std::string getName();
+	string getName();
 	bool isUnresolved();
 };
 
