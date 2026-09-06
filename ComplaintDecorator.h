@@ -3,11 +3,13 @@
 #include <vector>
 #include <string>
 #include "ComplaintComponent.h"
+using namespace std;
 
 class ComplaintDecorator : public ComplaintComponent {
 
-public:
+protected:
 	ComplaintComponent* wrappedComponent;
+public:
 	ComplaintDecorator(ComplaintComponent* component);
 	virtual ~ComplaintDecorator();
 	void display();
@@ -18,8 +20,8 @@ public:
 	bool isUrgent();
 	bool isUnresolved();
 	time_t getLoggedAt();
-	std::string getStateName();
-	void collectComplaints(std::vector<ComplaintComponent*>& list);
+	string getStateName();
+	void collectComplaints(vector<ComplaintComponent*>& list);
 };
 
 #endif

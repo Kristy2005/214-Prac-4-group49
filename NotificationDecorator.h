@@ -2,6 +2,7 @@
 #define NOTIFICATIONDECORATOR_H
 #include <string>
 #include "ComplaintDecorator.h"
+using namespace std;
 
 class NotificationDecorator : public ComplaintDecorator {
 
@@ -15,7 +16,7 @@ public:
 	void close();
 
 private:
-	void notify(std::string message);
+	void notify(string message);
 };
 
 #endif

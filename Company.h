@@ -2,12 +2,13 @@
 #define COMPANY_H
 #include "ComplaintGroup.h"
 #include <string>
+using namespace std;
 
 class Company : public ComplaintGroup {
 
 
 public:
-	Company(std::string name);
+	Company(string name);
 	void display();
 };
 

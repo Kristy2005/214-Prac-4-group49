@@ -4,12 +4,13 @@
 #include "ComplaintComponent.h"
 #include <vector>
 #include <string>
+using namespace std;
 
 
 class AllIterator : public ComplaintIterator{
 
 private:
-	std::vector<ComplaintComponent*> snapshot;
+	vector<ComplaintComponent*> snapshot;
 	int currentIndex;
 
 public:

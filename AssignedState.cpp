@@ -1,17 +1,16 @@
 #include "AssignedState.h"
+#include "InProgressState.h"
 #include <iostream>
+using namespace std;
 
 ComplaintState* AssignedState::startProgress() {
-	// TODO - implement AssignedState::startProgress
-	return nullptr;
+	return new InProgressState();
 }
 
-std::string AssignedState::getName() {
-	// TODO - implement AssignedState::getName
-	return "";
+string AssignedState::getName() {
+	return "Assigned";
 }
 
 bool AssignedState::isUnresolved() {
-	// TODO - implement AssignedState::isUnresolved
-	return false;
+	return true;
 }

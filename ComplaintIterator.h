@@ -1,6 +1,7 @@
 #ifndef COMPLAINTITERATOR_H
 #define COMPLAINTITERATOR_H
 #include "ComplaintComponent.h"
+using namespace std;
 
 class ComplaintIterator {
 

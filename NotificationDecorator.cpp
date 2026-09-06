@@ -1,38 +1,34 @@
 #include "NotificationDecorator.h"
 #include <iostream>
-
-#include "NotificationDecorator.h"
+using namespace std;
 
 NotificationDecorator::NotificationDecorator(ComplaintComponent* component)
     : ComplaintDecorator(component){}
 
-
 void NotificationDecorator::display() {
-	// TODO - implement NotificationDecorator::display
-
+    ComplaintDecorator::display();
 }
 
 void NotificationDecorator::assign() {
-	// TODO - implement NotificationDecorator::assign
-
+    ComplaintDecorator::assign();
+    notify("assigned");
 }
 
 void NotificationDecorator::startProgress() {
-	// TODO - implement NotificationDecorator::startProgress
-
+    ComplaintDecorator::startProgress();
+    notify("started");
 }
 
 void NotificationDecorator::resolve() {
-	// TODO - implement NotificationDecorator::resolve
-
+    ComplaintDecorator::resolve();
+    notify("resolved");
 }
 
 void NotificationDecorator::close() {
-	// TODO - implement NotificationDecorator::close
-
+    ComplaintDecorator::close();
+    notify("closed");
 }
 
-void NotificationDecorator::notify(std::string message) {
-	// TODO - implement NotificationDecorator::notify
-
+void NotificationDecorator::notify(string message) {
+    cout << "Notification: Complaint has been " << message << endl;
 }

@@ -1,13 +1,14 @@
 #include "Complaint.h"
 #include "LoggedState.h"
+#include <iostream>
+using namespace std;
 
-Complaint::Complaint(int id, std::string description, time_t loggedAt)
+Complaint::Complaint(int id, string description, time_t loggedAt)
     : id(id), description(description), loggedAt(loggedAt){
     currentState = new LoggedState();
 }
 
 Complaint::~Complaint(){
-	
     if (currentState != nullptr){
         delete currentState;
         currentState = nullptr;
@@ -15,56 +16,49 @@ Complaint::~Complaint(){
 }
 
 void Complaint::display() {
-	// TODO - implement Complaint::display
-
+    cout << "Complaint #" << id << ": " << description 
+              << " [" << getStateName() << "]" << (isUrgent() ? " [URGENT]" : "") << endl;
 }
 
 void Complaint::assign() {
-	// TODO - implement Complaint::assign
-
+    changeState(currentState->assign());
 }
 
 void Complaint::startProgress() {
-	// TODO - implement Complaint::startProgress
-
+    changeState(currentState->startProgress());
 }
 
 void Complaint::resolve() {
-	// TODO - implement Complaint::resolve
-
+    changeState(currentState->resolve());
 }
 
 void Complaint::close() {
-	// TODO - implement Complaint::close
-
+    changeState(currentState->close());
 }
 
 bool Complaint::isUrgent() {
-	// TODO - implement Complaint::isUrgent
-	return false;
+    return false;
 }
 
 bool Complaint::isUnresolved() {
-	// TODO - implement Complaint::isUnresolved
-	return false;
+    return currentState->isUnresolved();
 }
 
 time_t Complaint::getLoggedAt() {
-	return this->loggedAt;
-
+    return this->loggedAt;
 }
 
-std::string Complaint::getStateName() {
-	// TODO - implement Complaint::getStateName
-	return "";
+string Complaint::getStateName() {
+    return currentState->getName();
 }
 
-void Complaint::collectComplaints(std::vector<ComplaintComponent*>& list) {
-	// TODO - implement Complaint::collectComplaints
-
+void Complaint::collectComplaints(vector<ComplaintComponent*>& list) {
+    list.push_back(this);
 }
 
 void Complaint::changeState(ComplaintState* newState) {
-	// TODO - implement Complaint::changeState
-
+    if (newState != nullptr && newState != currentState) {
+        delete currentState;
+        currentState = newState;
+    }
 }

@@ -2,13 +2,14 @@
 #define FLOORDEPARTMENT_H
 #include <string>
 #include "ComplaintGroup.h"
+using namespace std;
 
 
 class FloorDepartment : public ComplaintGroup {
 
 
 public:
-	FloorDepartment(std::string name);
+	FloorDepartment(string name);
 	void display();
 };
 

@@ -1,11 +1,11 @@
 #include "ClosedState.h"
+#include <iostream>
+using namespace std;
 
-std::string ClosedState::getName() {
-	// TODO - implement ClosedState::getName
-	return "";
+string ClosedState::getName() {
+	return "Closed";
 }
 
 bool ClosedState::isUnresolved() {
-	// TODO - implement ClosedState::isUnresolved
 	return false;
 }

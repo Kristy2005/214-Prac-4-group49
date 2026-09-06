@@ -2,14 +2,15 @@
 #define BUILDING_H
 #include "ComplaintGroup.h"
 #include <string>
+using namespace std;
 
 class Building :public ComplaintGroup{
 
 public:
-	std::string address;
-	Building(std::string name, std::string address);
+	string address;
+	Building(string name, string address);
 	void display();
-	std::string getAddress();
+	string getAddress();
 };
 
 #endif

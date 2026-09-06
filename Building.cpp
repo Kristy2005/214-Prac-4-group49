@@ -1,14 +1,14 @@
 #include "Building.h"
 #include <iostream>
+using namespace std;
 
-Building::Building(std::string name, std::string address)
+Building::Building(string name, string address)
     : ComplaintGroup(name), address(address){}
 
 void Building::display() {
-	// TODO - implement Building::display
-
+    ComplaintGroup::display();
 }
 
-std::string Building::getAddress() {
-	return this->address;
+string Building::getAddress() {
+    return this->address;
 }

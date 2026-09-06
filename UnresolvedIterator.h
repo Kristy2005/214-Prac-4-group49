@@ -4,12 +4,13 @@
 #include <vector>
 #include "ComplaintIterator.h"
 #include "ComplaintComponent.h"
+using namespace std;
 
 
 class UnresolvedIterator : public ComplaintIterator {
 
 private:
-	std::vector<ComplaintComponent*> snapshot;
+	vector<ComplaintComponent*> snapshot;
 	int currentIndex;
 
 public:

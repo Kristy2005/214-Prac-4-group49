@@ -1,5 +1,5 @@
 #include "ComplaintIterator.h"
+using namespace std;
 
 ComplaintIterator::~ComplaintIterator() {
-	// TODO - implement ComplaintIterator::~ComplaintIterator
 }
