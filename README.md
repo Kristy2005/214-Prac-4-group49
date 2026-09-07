@@ -221,7 +221,7 @@ break main
 run
 next
 step
-print variableName
+print nextId
 continue
 quit
 ```
