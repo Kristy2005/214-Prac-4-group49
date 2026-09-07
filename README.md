@@ -3,7 +3,7 @@
 
 TaskForge is a hierarchical work-processing system developed for COS 214 Practical 4.
 
-The system models a nested body of work in the **Logistics** domain. It allows individual work items and groups of work to be managed as part of the same hierarchical structure.
+The system models a nested body of work in the **corporate facilities complaint and maintenance management** domain. It allows complaints to be organised across companies, buildings, floors or departments, and complaint categories while supporting lifecycle management, priority handling and optional notifications.
 
 The project is implemented in **C++11** and demonstrates the following Gang of Four design patterns:
 
@@ -14,7 +14,7 @@ The project is implemented in **C++11** and demonstrates the following Gang of F
 
 ## Team Members
 
-| Name       | Student Number   |
+| Name | Student Number |
 | ---------- | ---------------- |
 | Kristy Heesen | u24702341 |
 | Livhuwani Munyai | u25449029 |
@@ -24,12 +24,16 @@ The project is implemented in **C++11** and demonstrates the following Gang of F
 
 TaskForge demonstrates:
 
-* A recursive hierarchy containing groups and individual work items
+* A recursive hierarchy containing groups and individual complaints
 * Multiple ways of traversing the hierarchy
-* Independent iterators over the same structure
+* Independent iterators over the same runtime structure
 * State-dependent behaviour and lifecycle transitions
+* Valid and invalid state transitions
 * Runtime decorators that can be stacked
+* Urgent complaint priority handling
+* Optional complaint notifications
 * Runtime changes to the hierarchy or object behaviour
+* Snapshot-based traversal
 * Safe polymorphic object destruction and memory management
 
 ## Design Patterns
@@ -61,18 +65,31 @@ Decorators can also be stacked so that an object can have multiple additional be
 ## Repository Structure
 
 ```text
-TaskForge/
+214-Prac-4-group49/
 |
-|-- src/                 Source files
-|-- include/             Header files
-|-- docs/                UML diagrams and design documentation
-|-- main.cpp             Program entry point
-|-- Makefile             Project build instructions
-|-- Dockerfile           Docker environment
-|-- README.md            Project documentation
+|-- *.cpp                     C++ source files
+|-- *.h                       C++ header files
+|-- main.cpp                  Program entry point
+|-- Makefile                  Project build instructions
+|-- Dockerfile                Docker environment
+|-- README.md                 Project documentation
+|
+|-- docs/
+    |
+    |-- diagrams/
+        |-- Activity Diagram1.jpg
+        |-- Activity Diagram2.jpg
+        |-- Activity Diagram3.jpg
+        |-- Object Diagram.jpg
+        |-- State Diagram.jpg
+        |-- Prac4.vpp
+        |-- Cos_214 PracDocument.docx
+        |-- Debugging Evidence.png
+        |-- GDB Evidence.png
+        |-- Valgrind Evidence.png
 ```
 
-The exact source structure may differ as development continues.
+The `docs/diagrams/` directory contains the UML diagrams, Visual Paradigm project file, written project documentation and debugging evidence used for the practical.
 
 ## Building the Project
 
@@ -111,18 +128,23 @@ After compiling the project:
 
 ## Docker
 
-The project includes a Docker environment containing the tools required to compile, run and debug TaskForge.
+The project includes a Docker environment containing the tools required to compile, run, debug and investigate TaskForge.
 
-The Docker environment includes:
+The Docker image is based on Ubuntu 22.04 and includes:
 
 ```text
+build-essential
 g++
 make
 gdb
 valgrind
+doxygen
+graphviz
 ```
 
 No project-specific development tools need to be installed directly on the host computer.
+
+The Docker container uses `/app` as its working directory and copies the complete repository into the container.
 
 ### Build the Docker Image
 
@@ -132,17 +154,38 @@ From the root directory of the repository run:
 docker build -t taskforge .
 ```
 
+### Run TaskForge Directly with Docker
+
+The Dockerfile is configured to automatically run:
+
+```bash
+make clean && make && ./taskforge
+```
+
+Therefore, TaskForge can be compiled and executed using:
+
+```bash
+docker run --rm -it taskforge
+```
+
 ### Open the Docker Environment
 
-Run:
+To open an interactive shell inside the Docker environment:
 
 ```bash
 docker run --rm -it --entrypoint /bin/bash taskforge
 ```
 
-Once inside the container, compile the project using:
+Once inside the container, the project files are located in:
 
 ```bash
+/app
+```
+
+Compile the project using:
+
+```bash
+make clean
 make
 ```
 
@@ -154,7 +197,18 @@ Then run TaskForge using:
 
 ## GDB
 
-To debug TaskForge using GDB inside the Docker container:
+GDB is installed inside the Docker environment.
+
+To open a Docker shell with debugging permissions:
+
+```bash
+docker run --rm -it \
+  --cap-add=SYS_PTRACE \
+  --security-opt seccomp=unconfined \
+  --entrypoint /bin/bash taskforge
+```
+
+Once inside the container, start GDB using:
 
 ```bash
 gdb ./taskforge
@@ -172,9 +226,19 @@ continue
 quit
 ```
 
+GDB was used during development to inspect program execution, state changes and runtime behaviour.
+
 ## Valgrind
 
-To check the program for memory leaks and memory errors:
+Valgrind is installed inside the Docker environment.
+
+Open the Docker environment using:
+
+```bash
+docker run --rm -it --entrypoint /bin/bash taskforge
+```
+
+Then run:
 
 ```bash
 valgrind --leak-check=full --show-leak-kinds=all ./taskforge
@@ -182,9 +246,11 @@ valgrind --leak-check=full --show-leak-kinds=all ./taskforge
 
 The final implementation should contain no definitely-lost memory originating from the project code.
 
+Valgrind evidence is included in the project documentation.
+
 ## UML Documentation
 
-The `docs/` directory contains the UML documentation for the project.
+The `docs/diagrams/` directory contains the UML documentation for the project.
 
 The project includes:
 
@@ -193,7 +259,9 @@ The project includes:
 * UML State Diagram
 * Three UML Activity Diagrams
 
-The diagrams reflect the final C++ implementation and the runtime behaviour of TaskForge.
+The diagrams reflect the final C++ implementation and runtime behaviour of TaskForge.
+
+Additional debugging and investigation evidence is also stored in this directory.
 
 ## GitHub Workflow
 
